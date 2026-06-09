@@ -50,17 +50,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h2>Register</h2>
     <?php if($error) echo "<p class='error'>$error</p>"; ?>
     <?php if($success) echo "<p class='success'>$success</p>"; ?>
-    <form method="POST">
-        <input type="text" name="username" placeholder="Username" required>
-        <form method="POST" autocomplete="off">
-    <input type="password" name="password" placeholder="Password" autocomplete="new-password">
+    <form method="POST" autocomplete="off">
+    <input type="text"
+           name="username"
+           placeholder="Username"
+           required>
+
+    <input type="password"
+           name="password"
+           placeholder="Password"
+           autocomplete="new-password"
+           required>
+
+    <button type="submit">Sign Up</button>
 </form>
 
 
 
-        
-        <button type="submit">Sign Up</button>
-    </form>
+    
+   
     <p>Already have an account? <a href="login.php">Login</a></p>
 </div>
 </body>
