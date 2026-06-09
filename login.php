@@ -51,14 +51,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="auth-box">
     <h2>Login</h2>
     <?php if($error) echo "<p class='error'>$error</p>"; ?>
-    <form method="POST">
-        <input type="text" name="username" placeholder="Username" required>
-               <form method="POST" autocomplete="off">
-    <input type="password" name="password" placeholder="Password" autocomplete="new-password">
-</form>
+    <form method="POST" autocomplete="off">
+        <input type="text"
+               name="username"
+               placeholder="Username"
+               required>
+
+        <input type="password"
+               name="password"
+               placeholder="Password"
+               autocomplete="current-password"
+               required>
 
         <button type="submit">Log In</button>
     </form>
+
+    
+   
     <p>Don't have an account? <a href="register.php">Register</a></p>
 </div>
 </body>
