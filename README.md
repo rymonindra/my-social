@@ -1,6 +1,8 @@
 systemctl status apache2     
-sudo git clone https://github.com/rymonindra/my-social.git /var/www/html/my-social
+sudo git clone https://github.com/rymonindra/my-social.git . /var/www/html/my-social
 
+cd /var/www/html/
+sudo git clone https://github.com/rymonindra/my-social.git .
 
 
 mysql -u root -p     
