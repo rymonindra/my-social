@@ -10,6 +10,19 @@ sudo chown -R www-data:www-data /var/www/html/
 
 
 
+
+
+sudo chmod -R 755 /var/www/html/social-media
+sudo chown -R www-data:www-data /var/www/html/social-media
+
+
+
+
+
+
+
+
+
 <bold>
 CREATE USER 'mintu'@'localhost' IDENTIFIED BY 'mintu123';
 
