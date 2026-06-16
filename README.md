@@ -46,5 +46,5 @@ sudo tail -f /var/log/apache2/error.log
 
 
 
-GRANT ALL PRIVILEGES ON social-media.* TO 'mintu'@'localhost';
+GRANT ALL PRIVILEGES ON social_media.* TO 'mintu'@'localhost';
 FLUSH PRIVILEGES;
