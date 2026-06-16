@@ -38,6 +38,8 @@ CREATE TABLE posts (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+########
+sudo tail -f /var/log/apache2/error.log
 
 
 
