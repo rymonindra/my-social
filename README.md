@@ -23,7 +23,6 @@ sudo chown -R www-data:www-data /var/www/html/social-media
 
 
 
-<bold>
 CREATE USER 'mintu'@'localhost' IDENTIFIED BY 'mintu123';
 
 CREATE DATABASE social_media;
@@ -51,13 +50,14 @@ CREATE TABLE posts (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
-########
-sudo tail -f /var/log/apache2/error.log
-
-
-
-
-
 
 GRANT ALL PRIVILEGES ON social_media.* TO 'mintu'@'localhost';
 FLUSH PRIVILEGES;
+
+EXIT;
+
+
+
+
+########
+sudo tail -f /var/log/apache2/error.log
