@@ -1,0 +1,72 @@
+<?php
+session_start();
+// লগইন করা না থাকলে লগইন পেজে পাঠিয়ে দেবে
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+include "db.php";
+
+// Fetch posts with username
+$sql = "
+SELECT posts.content, posts.created_at, users.username
+FROM posts
+JOIN users ON posts.user_id = users.id
+ORDER BY posts.created_at DESC
+";
+$result = $conn->query($sql);
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Social Media Home</title>
+    <style>
+        body { font-family: Arial; background:#f0f2f5; margin:0; }
+        .navbar { background:#1877f2; color:white; padding:15px; font-size:22px; font-weight:bold; display: flex; justify-content: space-between; align-items: center; }
+        .navbar a { color: white; font-size: 16px; text-decoration: none; background: #e4e6eb; color: black; padding: 5px 10px; border-radius: 4px; }
+        .container { display:flex; margin:20px; }
+        .sidebar { width:25%; background:white; padding:15px; border-radius:8px; margin-right:20px; height: fit-content; }
+        .feed { width:75%; }
+        .post { background:white; padding:15px; margin-bottom:15px; border-radius:8px; }
+        .user { font-weight:bold; color: #1877f2; }
+        .time { font-size:12px; color:gray; }
+        textarea { width:100%; height:70px; border: 1px solid #ddd; border-radius: 6px; padding: 10px; box-sizing: border-box; resize: none; }
+        button { background:#1877f2; color:white; border:none; padding:10px 20px; margin-top:5px; cursor:pointer; border-radius: 4px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <span>MySocial</span>
+    <a href="logout.php">Logout</a>
+</div>
+
+<div class="container">
+    <div class="sidebar">
+        <h3>Profile</h3>
+        <p>Welcome, <strong><?= htmlspecialchars($_SESSION['username']) ?></strong>!</p>
+    </div>
+
+    <div class="feed">
+        <!-- Create Post -->
+        <div class="post">
+            <form action="post.php" method="POST">
+                <textarea name="content" placeholder="What's on your mind, <?= htmlspecialchars($_SESSION['username']) ?>?" required></textarea>
+                <button type="submit">Post</button>
+            </form>
+        </div>
+
+        <!-- Posts -->
+        <?php while($row = $result->fetch_assoc()): ?>
+            <div class="post">
+                <div class="user"><?= htmlspecialchars($row['username']) ?></div>
+                <div class="time"><?= $row['created_at'] ?></div>
+                <p><?= htmlspecialchars($row['content']) ?></p>
+            </div>
+        <?php endwhile; ?>
+    </div>
+</div>
+
+</body>
+</html>
